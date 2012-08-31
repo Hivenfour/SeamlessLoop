@@ -1,5 +1,5 @@
-SeamlessLoop
-============
+SeamlessLoop for JavaScript
+===========================
 
 Reproduce seamless audio loops on HTML5 without specific browser Audio APIs.
 
@@ -12,13 +12,13 @@ It has been tested on Chrome 21, Firefox 15, and Opera 12.
 Usage
 =====
 
-Create the object providing the audio file and its duration in miliseconds:
+- Create the object providing the audio file and its duration in miliseconds
 var loop = new Loop(uri, length);
 
-Start reproducing the seamless loop:
+- Start reproducing the seamless loop
 loop.start();
 
-Stop reproduccion of the seamless loop:
+- Stop reproduccion of the seamless loop
 loop.stop();
 
 Notes
