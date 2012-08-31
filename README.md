@@ -13,31 +13,31 @@ Usage
 =====
 
 - Create the object providing the audio file and its duration in miliseconds
-var loop = new Loop(uri, length);
+  var loop = new Loop(uri, length);
 
 - Start reproducing the seamless loop
-loop.start();
+  loop.start();
 
 - Stop reproduccion of the seamless loop
-loop.stop();
+  loop.stop();
 
 Notes
 =====
 
-URI: In our context, we used wav files embedded in a data-uri. You can do this encoding your binary file to base64 with something like BASE64UTF8
+- URI: In our context, we used wav files embedded in a data-uri. You can do this encoding your binary file to base64 with something like BASE64UTF8
 
-Length: The duration, in miliseconds, of the audio file to set up the intervals. You can hard-code it or get it using a decode library.
+- Length: The duration, in miliseconds, of the audio file to set up the intervals. You can hard-code it or get it using a decode library.
 For PCM Wav files, you can use the library pcmdata.js, and calculate Data.length / SampleRate * 1000 / BytesPerSample
 
 Known issues
 ============
 
-The jump to the second loop seems to fire to early and the first loop gets cutted.
+- The jump to the second loop seems to fire to early and the first loop gets cutted.
 
 License
 =======
 
 Copyright (c) 2012 Main Software,
-Written by Darío Tejedor Rico. Contact mail: hivenfour@gmail.com
+Written by DarÃ­o Tejedor Rico. Contact mail: hivenfour@gmail.com
 The source code is freely distributable under the terms of LGPL license.
 License details at http://www.gnu.org/licenses/lgpl-3.0.txt
