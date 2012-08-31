@@ -34,6 +34,8 @@ Known issues
 
 The jump to the second loop seems to fire to early and the first loop gets cutted.
 
+License
+=======
 
 Copyright (c) 2012 Main Software,
 Written by Darío Tejedor Rico. Contact mail: hivenfour@gmail.com
