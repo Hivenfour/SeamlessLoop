@@ -7,7 +7,7 @@ Standard loop attribute is useless when you try to loop seamlessly without gaps 
 Here is an approach using intervals and "double buffer" Audio objects to achieve the seamless loop.
 Created inside a Main Software project.
 
-It has been tested on Chrome 21, Firefox 15, and Opera 12.
+It has been tested with wav files on Chrome 21, Firefox 15, and Opera 12.
 
 Usage
 =====
