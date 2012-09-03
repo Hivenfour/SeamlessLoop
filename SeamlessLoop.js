@@ -2,7 +2,7 @@
  * SeamlessLoop.js - Reproduces seamless loops on HTML5
  * 
  * Copyright (c) 2012 Main Software,
- * Written by Darío Tejedor Rico. Contact mail: hivenfour@gmail.com
+ * Written by Darï¿½o Tejedor Rico. Contact mail: hivenfour@gmail.com
  * The source code is freely distributable under the terms of LGPL license.
  * License details at http://www.gnu.org/licenses/lgpl-3.0.txt
  * 
@@ -18,7 +18,7 @@
  */
 
 function SeamlessLoop(uri, length) {
-	this.doLoop = function(audio, audio2, length) {
+	this.doLoop = function() {
 		if(this.audio.paused) {
 			this.audio.play();
 			this.audio2.load();
@@ -39,7 +39,7 @@ function SeamlessLoop(uri, length) {
 SeamlessLoop.prototype.start = function() {
 	var t = this;
 	this.audio.play();
-	this.interval = setInterval(function() {t.doLoop(this.audio, this.audio2, this.length);}, this.length);
+	this.interval = setInterval(function() {t.doLoop();}, this.length);
 };
 
 SeamlessLoop.prototype.stop = function() {
