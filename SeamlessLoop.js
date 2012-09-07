@@ -59,7 +59,7 @@ function SeamlessLoop() {
 	if(this.is.chrome) this.playDelay = -25;
 	if(this.is.chrome) this.stopDelay = 25;
 	if(this.is.ff) this.playDelay = -25;
-	if(this.is.ff) this.stopDelay = 120;
+	if(this.is.ff) this.stopDelay = 85;
 	if(this.is.opera) this.playDelay = 5;
 	if(this.is.opera) this.stopDelay = 0;
 	console.debug(this.playDelay + ", " + this.stopDelay);
