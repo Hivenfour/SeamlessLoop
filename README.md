@@ -42,7 +42,7 @@ Notes
 - Reading files: To read a file easyly just use AJAX or a library like BinFileReader
 var file = new BinFileReader("snd/sound.wav");
 var fileContent = file.readString(file.getFileSize());
-                                       + 
+
 - URI: In our context, we used wav files embedded in a data-uri. You can do this encoding your binary file to base64 with something like BASE64UTF8
 var encoder = new BASE64UTF8();
 var base64 = encoder.base64_encode(fileContent);
