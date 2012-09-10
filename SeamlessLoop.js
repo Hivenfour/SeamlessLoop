@@ -132,7 +132,7 @@ SeamlessLoop.prototype.start = function(id) {
 };
 
 SeamlessLoop.prototype.stop = function() {
-	clearTimeout(timeout);
+	clearTimeout(this.timeout);
 	this.actual["_1"].currentTime = 0;
 	this.actual["_1"].pause();
 	this.actual["_2"].currentTime = 0;
