@@ -95,7 +95,6 @@ function SeamlessLoop() {
 				if(t.old.paused == false) {
 					t.old.pause();
 					t.old.currentTime = 0;
-					t.old = undefined;
 				}
 			}, t.stopDelay);
 			t.dropOld = false;
