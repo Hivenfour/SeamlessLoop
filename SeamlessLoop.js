@@ -9,31 +9,31 @@
  * 
  * USAGE:
  * - Create the Seamlessloop object
- * var loop = new SeamlessLoop();
+ * 		var loop = new SeamlessLoop();
  * 
  * - Add as many sounds as you will use, providing duration in miliseconds
  * (sounds must be pre-loaded if you want to update the loop without gaps)
- * loop.addUri(uri, length, "sound1");
- * loop.addUri(uri, length, "sound2");
+ * 		loop.addUri(uri, length, "sound1");
+ * 		loop.addUri(uri, length, "sound2");
  * ...
  * 
  * - Establish your callback function that will be called when all sounds are pre-loaded
- * loop.callback(soundsLoaded);
+ * 		loop.callback(soundsLoaded);
  * 
  * - Start reproducing the seamless loop:
- * function soundsLoaded() {
- * var n = 1;
- * loop.start("sound" + n);
- * };
+ * 		function soundsLoaded() {
+ * 			var n = 1;
+ * 			loop.start("sound" + n);
+ * 		};
  * 
  * - Update the looping sound, you can do this
  * synchronously (waiting the loop to finish)
  * or asynchronously (change sound immediately):
- * n++;
- * loop.update("sound" + n, false);
+ * 		n++;
+ * 		loop.update("sound" + n, false);
  * 
  * - Stop the seamless loop:
- * loop.stop();
+ * 		loop.stop();
  */
 
 function SeamlessLoop() {
@@ -110,7 +110,7 @@ function SeamlessLoop() {
 		var antikey = (this.next == 1 ? "_2" : "_1");
 		
 		var t = this;
-		this.timeout = setTimeout(function() {t.doLoop();}, this.actual["_length"] + this.playDelay);
+		this.timeout = setTimeout(function() {t.doLoop();}, this.actual._length + this.playDelay);
 		
 		if(this.is.opera) this.actual[antikey].pause();
 		
@@ -132,10 +132,10 @@ SeamlessLoop.prototype.start = function(id) {
 
 SeamlessLoop.prototype.stop = function() {
 	clearTimeout(this.timeout);
-	this.actual["_1"].currentTime = 0;
-	this.actual["_1"].pause();
-	this.actual["_2"].currentTime = 0;
-	this.actual["_2"].pause();
+	this.actual._1.currentTime = 0;
+	this.actual._1.pause();
+	this.actual._2.currentTime = 0;
+	this.actual._2.pause();
 };
 
 SeamlessLoop.prototype.callback = function(cb_loaded) {
@@ -162,19 +162,19 @@ SeamlessLoop.prototype.update = function(id, sync) {
 
 SeamlessLoop.prototype.addUri = function(uri, length, id) {
 	this.audios[id] = new Array();
-	this.audios[id]["_length"] = length;
+	this.audios[id]._length = length;
 	var t = this;
-	this.audios[id]["_1_isLoaded"] = new Boolean();
-	this.audios[id]["_2_isLoaded"] = new Boolean();
-	this.audios[id]["_1"] = new Audio(uri);
-	this.audios[id]["_2"] = new Audio(uri);
+	this.audios[id]._1_isLoaded = new Boolean();
+	this.audios[id]._2_isLoaded = new Boolean();
+	this.audios[id]._1 = new Audio(uri);
+	this.audios[id]._2 = new Audio(uri);
 	this._total++;
-	this.audios[id]["_1"].addEventListener("canplaythrough", function() {t._eventCanplaythrough(t.audios[id]["_1_isLoaded"]);});
-	this.audios[id]["_2"].addEventListener("canplaythrough", function() {t._eventCanplaythrough(t.audios[id]["_2_isLoaded"]);});
-	this.audios[id]["_1"].addEventListener("playing", function() {t._eventPlaying(t.audios[id]["_2"]);});
-	this.audios[id]["_2"].addEventListener("playing", function() {t._eventPlaying(t.audios[id]["_1"]);});
-	this.audios[id]["_1"].addEventListener("ended", function() {t._eventEnded(t.audios[id]["_1"]);});
-	this.audios[id]["_2"].addEventListener("ended", function() {t._eventEnded(t.audios[id]["_2"]);});
-	this.audios[id]["_1"].load();
-	this.audios[id]["_2"].load();
+	this.audios[id]._1.addEventListener("canplaythrough", function() {t._eventCanplaythrough(t.audios[id]._1_isLoaded);});
+	this.audios[id]._2.addEventListener("canplaythrough", function() {t._eventCanplaythrough(t.audios[id]._2_isLoaded);});
+	this.audios[id]._1.addEventListener("playing", function() {t._eventPlaying(t.audios[id]._2);});
+	this.audios[id]._2.addEventListener("playing", function() {t._eventPlaying(t.audios[id]._1);});
+	this.audios[id]._1.addEventListener("ended", function() {t._eventEnded(t.audios[id]._1);});
+	this.audios[id]._2.addEventListener("ended", function() {t._eventEnded(t.audios[id]._2);});
+	this.audios[id]._1.load();
+	this.audios[id]._2.load();
 };
