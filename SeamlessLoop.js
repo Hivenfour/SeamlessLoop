@@ -87,14 +87,18 @@ function SeamlessLoop() {
 	this._eventPlaying = function(audMute) {
 		setTimeout(function() {
 			audMute.pause();
-			audMute.currentTime = 0;
+			try {
+				audMute.currentTime = 0;
+			} catch (e){console.debug(e.message);};
 		}, t.stopDelay);
 		
 		if(t.dropOld == true) {
 			setTimeout(function() {
 				if(t.old.paused == false) {
 					t.old.pause();
-					t.old.currentTime = 0;
+					try {
+						t.old.currentTime = 0;
+					} catch (e){console.debug(e.message);};
 				}
 			}, t.stopDelay);
 			t.dropOld = false;
