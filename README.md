@@ -43,6 +43,12 @@ n++;
 loop.update("sound" + n, false);
 ```
 
+- Modify the seamless loop volume:
+```Javascript
+loop.volume(0.5);
+loop.volume(loop.volume() + 0.1);
+```
+
 - Stop the seamless loop:
 ```Javascript
 loop.stop();
