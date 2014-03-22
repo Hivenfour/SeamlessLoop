@@ -32,6 +32,10 @@
  * 		n++;
  * 		loop.update("sound" + n, false);
  * 
+ * - Modify the seamless loop volume:
+ * 		loop.volume(0.5);
+ * 		loop.volume(loop.volume() + 0.1);
+ * 
  * - Stop the seamless loop:
  * 		loop.stop();
  */
@@ -68,6 +72,7 @@ function SeamlessLoop() {
 	this.actual = new Array();
 	this.dropOld = new Boolean();
 	this.old;
+	this.volume = 1;
 	
 	var t = this;
 	this._eventCanplaythrough = function(audBool) {
@@ -106,7 +111,7 @@ function SeamlessLoop() {
 	};
 
 	this._eventEnded = function(aud) {
-		aud.volume = 1;
+		aud.volume = this.volume;
 	};
 
 	this.doLoop = function() {
@@ -132,6 +137,15 @@ SeamlessLoop.prototype.start = function(id) {
 		this.actual = this.audios[id];
 	}
 	this.doLoop();
+};
+
+SeamlessLoop.prototype.volume = function(vol) {
+	if(typeof vol != "undefined") {
+		this.actual.volume = vol;
+		this.volume = vol;
+	}
+	
+	return vol;
 };
 
 SeamlessLoop.prototype.stop = function() {
@@ -181,4 +195,6 @@ SeamlessLoop.prototype.addUri = function(uri, length, id) {
 	this.audios[id]._2.addEventListener("ended", function() {t._eventEnded(t.audios[id]._2);});
 	this.audios[id]._1.load();
 	this.audios[id]._2.load();
+	this.audios[id]._1.volume = this.volume;
+	this.audios[id]._2.volume = this.volume;
 };
