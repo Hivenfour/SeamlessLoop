@@ -72,7 +72,7 @@ function SeamlessLoop() {
 	this.actual = new Array();
 	this.dropOld = new Boolean();
 	this.old;
-	this.volume = 1;
+	this._volume = 1;
 	
 	var t = this;
 	this._eventCanplaythrough = function(audBool) {
@@ -111,7 +111,7 @@ function SeamlessLoop() {
 	};
 
 	this._eventEnded = function(aud) {
-		aud.volume = this.volume;
+		aud.volume = this._volume;
 	};
 
 	this.doLoop = function() {
@@ -141,8 +141,9 @@ SeamlessLoop.prototype.start = function(id) {
 
 SeamlessLoop.prototype.volume = function(vol) {
 	if(typeof vol != "undefined") {
-		this.actual.volume = vol;
-		this.volume = vol;
+		this.actual._1.volume = vol;
+        	this.actual._2.volume = vol;
+		this._volume = vol;
 	}
 	
 	return vol;
@@ -195,6 +196,6 @@ SeamlessLoop.prototype.addUri = function(uri, length, id) {
 	this.audios[id]._2.addEventListener("ended", function() {t._eventEnded(t.audios[id]._2);});
 	this.audios[id]._1.load();
 	this.audios[id]._2.load();
-	this.audios[id]._1.volume = this.volume;
-	this.audios[id]._2.volume = this.volume;
+	this.audios[id]._1.volume = this._volume;
+	this.audios[id]._2.volume = this._volume;
 };
