@@ -140,7 +140,7 @@ SeamlessLoop.prototype.start = function(id) {
 };
 
 SeamlessLoop.prototype.volume = function(vol) {
-	if(typeof vol != "undefined") {
+	if(typeof vol != "undefined" && this.timeout) {
 		this.actual._1.volume = vol;
         	this.actual._2.volume = vol;
 		this._volume = vol;
@@ -150,6 +150,9 @@ SeamlessLoop.prototype.volume = function(vol) {
 };
 
 SeamlessLoop.prototype.stop = function() {
+	if(!this.timeout){
+		return;
+	}
 	clearTimeout(this.timeout);
 	this.actual._1.currentTime = 0;
 	this.actual._1.pause();
